@@ -58,12 +58,16 @@ def load_vocabulary(tense):
             pos_set = entry_x.findall('pos') # Find all pos
             kanji_score = 0
             furigana_score = 0
+            is_verb = 0
             for pos_x in pos_set:
-                s = verb_switch.get(pos_x.text, {"NOT_VERB_POS"}), 
-                if s != "NOT_VERB_POS": #if it's tagged as verb
+                s = verb_switch.get(pos_x.text, "NOT_VERB_POS"), 
+                #print(s[0])
+                if s[0] != "NOT_VERB_POS": #if it's tagged as verb
+                    is_verb = 1
                     verb_list = [number, ent_seq_set_x[0].text, kanji_set[0].text, furigana_set[0].text, pos_set[0].text]
                     verb_array.append(verb_list)
-                    print(verb_list)
+            if is_verb == 1 :
+                print(verb_list)
 
         return verb_array
 
