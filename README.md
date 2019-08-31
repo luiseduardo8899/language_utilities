@@ -25,5 +25,7 @@ WARNING: rate should be 2, otherwise we may violate wikipedia terms of use for d
 class BlogSpider(scrapy.Spider):
     rate = 2 #DO NOT CHANGE
 
-# Verb Conjugation #
+# Verb Conjugation # Script: verb_conjugate.py
 Takes an XML Vocab list, locates Verbs, and outputs the full conjugation table for regular verbs 
+
+#> python3 verb_conjugate.py
