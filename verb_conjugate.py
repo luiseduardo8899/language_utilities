@@ -39,6 +39,9 @@ VERB_5_MU = 7
 VERB_5_SU = 8
 VERB_5_I_ERU = 9
 VERB_SURU = 10
+VERB_1 = 11
+VERB_1_ZURU = 12
+VERB_UNKNOWN = 99
 
 DICTIONARY_FORM = 0
 POLITE_FORM = 1
@@ -48,7 +51,7 @@ TA_FORM = 4
 POTENTIAL_FORM = 5
 CONDITIONAL_FORM = 6
 VOLITIONAL_FORM = 7
-conjugation_table = [[],[],[],[],[],[],[],[],[],[], []]
+conjugation_table = [[],[],[],[],[],[],[],[],[],[], [], [], []]
 conjugation_table[VERB_5_U] = 	["う", "います", "わない", "って", "った", "える", "えば", "おう"]
 conjugation_table[VERB_5_TSU] = ["つ", "ちます", "たない", "って", "った", "てる", "てば", "とう"]
 conjugation_table[VERB_5_RU] = 	["る", "ります", "らない", "って", "った", "れる", "れば", "ろう"]
@@ -60,6 +63,8 @@ conjugation_table[VERB_5_MU] = 	["む", "みます", "まない", "んで", "ん
 conjugation_table[VERB_5_SU] = 	["す" , "します", "さない", "して", "した", "せる", "せば", "そう"]
 conjugation_table[VERB_5_I_ERU] = 	["る", "ます", "ない", "て", "た", "られる", "れば", "よう"]
 conjugation_table[VERB_SURU] = 	["する", "します", "しない", "して", "した", "できる", "すれば", "しよう"]
+conjugation_table[VERB_1] = 	["る", "ます", "ない", "て", "た", "られる", "れば", "よう"]
+conjugation_table[VERB_1_ZURU] =["ずる", "じます", "じない", "じて", "じた", "じられる", "ずれば", "じよう"]
 
 
 #detect type of verb
@@ -92,29 +97,29 @@ class VerbType:
 
     def print(self):
         print("Verb Detection Variables:")
-        print("\tis_special_v : %s" % self.special_v)
-        print("\tis_verb5_u_v : %s" % self.verb5_u_v )
-        print("\tis_verb_1_v : %s" % self.verb_1_v )
-        print("\tis_verb_1_zuru_v : %s" % self.verb_1_zuru_v )
-        print("\tis_verb_2_ru_v : %s" % self.verb_2_ru_v )
-        print("\tis_verb_4_ku_v : %s" % self.verb_4_ku_v )
-        print("\tis_verb_4_ru_v : %s" % self.verb_4_ru_v )
-        print("\tis_verb_5_bu_v : %s" % self.verb_5_bu_v )
-        print("\tis_verb_5_gu_v : %s" % self.verb_5_gu_v )
-        print("\tis_verb_5_ku_v : %s" % self.verb_5_ku_v )
-        print("\tis_verb_5_mu_v : %s" % self.verb_5_mu_v )
-        print("\tis_verb_5_ru_v : %s" % self.verb_5_ru_v )
-        print("\tis_verb_5_su_v : %s" % self.verb_5_su_v )
-        print("\tis_verb_5_tsu_v : %s" % self.verb_5_tsu_v )
-        print("\tis_verb_5_u_v : %s" % self.verb_5_u_v )
-        print("\tis_verb_archaic_v : %s" % self.verb_archaic_v )
-        print("\tis_verb_auxiliary_v : %s" % self.verb_auxiliary_v )
-        print("\tis_verb_intransitive_v : %s" % self.verb_intransitive_v )
-        print("\tis_verb_irregular_v : %s" % self.verb_irregular_v )
-        print("\tis_verb_ru_v : %s" % self.verb_ru_v )
-        print("\tis_verb_special_v : %s" % self.verb_special_v )
-        print("\tis_verb_suru_v : %s" % self.verb_suru_v )
-        print("\tis_verb_transitive_v : %s" % self.verb_transitive_v )
+        print("\tispecial_v : %s" % self.special_v)
+        print("\tiverb5_u_v : %s" % self.verb5_u_v )
+        print("\tiverb_1_v : %s" % self.verb_1_v )
+        print("\tiverb_1_zuru_v : %s" % self.verb_1_zuru_v )
+        print("\tiverb_2_ru_v : %s" % self.verb_2_ru_v )
+        print("\tiverb_4_ku_v : %s" % self.verb_4_ku_v )
+        print("\tiverb_4_ru_v : %s" % self.verb_4_ru_v )
+        print("\tiverb_5_bu_v : %s" % self.verb_5_bu_v )
+        print("\tiverb_5_gu_v : %s" % self.verb_5_gu_v )
+        print("\tiverb_5_ku_v : %s" % self.verb_5_ku_v )
+        print("\tiverb_5_mu_v : %s" % self.verb_5_mu_v )
+        print("\tiverb_5_ru_v : %s" % self.verb_5_ru_v )
+        print("\tiverb_5_su_v : %s" % self.verb_5_su_v )
+        print("\tiverb_5_tsu_v : %s" % self.verb_5_tsu_v )
+        print("\tiverb_5_u_v : %s" % self.verb_5_u_v )
+        print("\tiverb_archaic_v : %s" % self.verb_archaic_v )
+        print("\tiverb_auxiliary_v : %s" % self.verb_auxiliary_v )
+        print("\tiverb_intransitive_v : %s" % self.verb_intransitive_v )
+        print("\tiverb_irregular_v : %s" % self.verb_irregular_v )
+        print("\tiverb_ru_v : %s" % self.verb_ru_v )
+        print("\tiverb_special_v : %s" % self.verb_special_v )
+        print("\tiverb_suru_v : %s" % self.verb_suru_v )
+        print("\tiverb_transitive_v : %s" % self.verb_transitive_v )
 
     def reset(self):
         self.special_v = 0
@@ -326,97 +331,42 @@ class VerbType:
         potential_form = ""
         conditional_form = ""
         volitional_form = ""
+        VERB_TYPE = VERB_UNKNOWN
         if self.verb_suru_v  :
-            polite_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][VOLITIONAL_FORM])
+            VERB_TYPE = VERB_SURU
         elif self.verb5_u_v or  self.verb_5_u_v  :
-            polite_form = dict_form.replace(conjugation_table[VERB_5_U][DICTIONARY_FORM], conjugation_table[VERB_5_U][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_5_U][DICTIONARY_FORM], conjugation_table[VERB_5_U][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_5_U][DICTIONARY_FORM], conjugation_table[VERB_5_U][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_5_U][DICTIONARY_FORM], conjugation_table[VERB_5_U][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_5_U][DICTIONARY_FORM], conjugation_table[VERB_5_U][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_5_U][DICTIONARY_FORM], conjugation_table[VERB_5_U][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_5_U][DICTIONARY_FORM], conjugation_table[VERB_5_U][VOLITIONAL_FORM])
+            VERB_TYPE = VERB_5_U
         elif self.verb_5_tsu_v:
-            polite_form = dict_form.replace(conjugation_table[VERB_5_TSU][DICTIONARY_FORM], conjugation_table[VERB_5_TSU][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_5_TSU][DICTIONARY_FORM], conjugation_table[VERB_5_TSU][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_5_TSU][DICTIONARY_FORM], conjugation_table[VERB_5_TSU][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_5_TSU][DICTIONARY_FORM], conjugation_table[VERB_5_TSU][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_5_TSU][DICTIONARY_FORM], conjugation_table[VERB_5_TSU][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_5_TSU][DICTIONARY_FORM], conjugation_table[VERB_5_TSU][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_5_TSU][DICTIONARY_FORM], conjugation_table[VERB_5_TSU][VOLITIONAL_FORM])
+            VERB_TYPE = VERB_5_TSU
         elif self.verb_5_ru_v:
-            polite_form = dict_form.replace(conjugation_table[VERB_5_RU][DICTIONARY_FORM], conjugation_table[VERB_5_RU][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_5_RU][DICTIONARY_FORM], conjugation_table[VERB_5_RU][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_5_RU][DICTIONARY_FORM], conjugation_table[VERB_5_RU][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_5_RU][DICTIONARY_FORM], conjugation_table[VERB_5_RU][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_5_RU][DICTIONARY_FORM], conjugation_table[VERB_5_RU][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_5_RU][DICTIONARY_FORM], conjugation_table[VERB_5_RU][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_5_RU][DICTIONARY_FORM], conjugation_table[VERB_5_RU][VOLITIONAL_FORM])
+            VERB_TYPE = VERB_5_RU
         elif self.verb_5_ku_v:
-            polite_form = dict_form.replace(conjugation_table[VERB_5_KU][DICTIONARY_FORM], conjugation_table[VERB_5_KU][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_5_KU][DICTIONARY_FORM], conjugation_table[VERB_5_KU][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_5_KU][DICTIONARY_FORM], conjugation_table[VERB_5_KU][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_5_KU][DICTIONARY_FORM], conjugation_table[VERB_5_KU][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_5_KU][DICTIONARY_FORM], conjugation_table[VERB_5_KU][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_5_KU][DICTIONARY_FORM], conjugation_table[VERB_5_KU][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_5_KU][DICTIONARY_FORM], conjugation_table[VERB_5_KU][VOLITIONAL_FORM])
+            VERB_TYPE = VERB_5_KU
         elif self.verb_5_gu_v:
-            polite_form = dict_form.replace(conjugation_table[VERB_5_GU][DICTIONARY_FORM], conjugation_table[VERB_5_GU][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_5_GU][DICTIONARY_FORM], conjugation_table[VERB_5_GU][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_5_GU][DICTIONARY_FORM], conjugation_table[VERB_5_GU][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_5_GU][DICTIONARY_FORM], conjugation_table[VERB_5_GU][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_5_GU][DICTIONARY_FORM], conjugation_table[VERB_5_GU][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_5_GU][DICTIONARY_FORM], conjugation_table[VERB_5_GU][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_5_GU][DICTIONARY_FORM], conjugation_table[VERB_5_GU][VOLITIONAL_FORM])
+            VERB_TYPE = VERB_5_GU
         elif self.verb_5_nu_v:
-            polite_form = dict_form.replace(conjugation_table[VERB_5_NU][DICTIONARY_FORM], conjugation_table[VERB_5_NU][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_5_NU][DICTIONARY_FORM], conjugation_table[VERB_5_NU][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_5_NU][DICTIONARY_FORM], conjugation_table[VERB_5_NU][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_5_NU][DICTIONARY_FORM], conjugation_table[VERB_5_NU][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_5_NU][DICTIONARY_FORM], conjugation_table[VERB_5_NU][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_5_NU][DICTIONARY_FORM], conjugation_table[VERB_5_NU][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_5_NU][DICTIONARY_FORM], conjugation_table[VERB_5_NU][VOLITIONAL_FORM])
+            VERB_TYPE = VERB_5_NU
         elif self.verb_5_bu_v:
-            polite_form = dict_form.replace(conjugation_table[VERB_5_BU][DICTIONARY_FORM], conjugation_table[VERB_5_BU][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_5_BU][DICTIONARY_FORM], conjugation_table[VERB_5_BU][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_5_BU][DICTIONARY_FORM], conjugation_table[VERB_5_BU][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_5_BU][DICTIONARY_FORM], conjugation_table[VERB_5_BU][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_5_BU][DICTIONARY_FORM], conjugation_table[VERB_5_BU][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_5_BU][DICTIONARY_FORM], conjugation_table[VERB_5_BU][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_5_BU][DICTIONARY_FORM], conjugation_table[VERB_5_BU][VOLITIONAL_FORM])
+            VERB_TYPE = VERB_5_BU
         elif self.verb_5_mu_v:
-            polite_form = dict_form.replace(conjugation_table[VERB_5_MU][DICTIONARY_FORM], conjugation_table[VERB_5_MU][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_5_MU][DICTIONARY_FORM], conjugation_table[VERB_5_MU][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_5_MU][DICTIONARY_FORM], conjugation_table[VERB_5_MU][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_5_MU][DICTIONARY_FORM], conjugation_table[VERB_5_MU][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_5_MU][DICTIONARY_FORM], conjugation_table[VERB_5_MU][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_5_MU][DICTIONARY_FORM], conjugation_table[VERB_5_MU][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_5_MU][DICTIONARY_FORM], conjugation_table[VERB_5_MU][VOLITIONAL_FORM])
+            VERB_TYPE = VERB_5_MU
         elif self.verb_5_su_v:
-            polite_form = dict_form.replace(conjugation_table[VERB_5_SU][DICTIONARY_FORM], conjugation_table[VERB_5_SU][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_5_SU][DICTIONARY_FORM], conjugation_table[VERB_5_SU][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_5_SU][DICTIONARY_FORM], conjugation_table[VERB_5_SU][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_5_SU][DICTIONARY_FORM], conjugation_table[VERB_5_SU][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_5_SU][DICTIONARY_FORM], conjugation_table[VERB_5_SU][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_5_SU][DICTIONARY_FORM], conjugation_table[VERB_5_SU][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_5_SU][DICTIONARY_FORM], conjugation_table[VERB_5_SU][VOLITIONAL_FORM])
-        elif self.verb_suru_v:
-            polite_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][POLITE_FORM])
-            negative_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][NEGATIVE_FORM])
-            te_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][TE_FORM])
-            ta_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][TA_FORM])
-            potential_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][POTENTIAL_FORM])
-            conditional_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][CONDITIONAL_FORM])
-            volitional_form = dict_form.replace(conjugation_table[VERB_SURU][DICTIONARY_FORM], conjugation_table[VERB_SURU][VOLITIONAL_FORM])
+            VERB_TYPE = VERB_5_SU
+        elif self.verb_1_v:
+            VERB_TYPE = VERB_1
+
+        if VERB_TYPE != VERB_UNKNOWN :
+            polite_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][POLITE_FORM])
+            negative_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][NEGATIVE_FORM])
+            te_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][TE_FORM])
+            ta_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][TA_FORM])
+            potential_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][POTENTIAL_FORM])
+            conditional_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][CONDITIONAL_FORM])
+            volitional_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][VOLITIONAL_FORM])
 
         print("Dictionary Form : %s" % dict_form)
         print(" - Polite Form %s" % polite_form)
+        print(" - Negative Form %s" % negative_form)
         print(" - Te Form %s" % te_form)
         print(" - Ta Form %s" % ta_form)
         print(" - Potential Form %s" % potential_form)
