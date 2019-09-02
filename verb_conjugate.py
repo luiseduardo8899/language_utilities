@@ -332,6 +332,7 @@ class VerbType:
         conditional_form = ""
         volitional_form = ""
         VERB_TYPE = VERB_UNKNOWN
+        table = [dict_form]
         if self.verb_suru_v  :
             VERB_TYPE = VERB_SURU
         elif self.verb5_u_v or  self.verb_5_u_v  :
@@ -354,6 +355,8 @@ class VerbType:
             VERB_TYPE = VERB_5_SU
         elif self.verb_1_v:
             VERB_TYPE = VERB_1
+        elif self.verb_1_zuru_v:
+            VERB_TYPE = VERB_1_ZURU
 
         if VERB_TYPE != VERB_UNKNOWN :
             polite_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][POLITE_FORM])
@@ -364,6 +367,15 @@ class VerbType:
             conditional_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][CONDITIONAL_FORM])
             volitional_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][VOLITIONAL_FORM])
 
+            table.append(polite_form)
+            table.append(negative_form)
+            table.append(te_form)
+            table.append(ta_form)
+            table.append(potential_form)
+            table.append(conditional_form)
+            table.append(volitional_form)
+
+
         print("Dictionary Form : %s" % dict_form)
         print(" - Polite Form %s" % polite_form)
         print(" - Negative Form %s" % negative_form)
@@ -373,14 +385,18 @@ class VerbType:
         print(" - Conditional Form %s" % conditional_form)
         print(" - Volitional Form %s" % volitional_form)
 
+        return table
+
 def load_vocabulary(tense):
 
     filename = "conjugation_table.txt"
     vocab_filename = "./GKvocab_n2.xml"
+    verb_filename = "./GKverbs_n2.xml"
     verb_array = []
     number = 0
     counter = 0
     level_counter = 1
+    verb_xml_h = open(verb_filename,"w") #always append to file
 
     print('Processing GKVocab XML File - ')
     #Main execution code
@@ -404,9 +420,13 @@ def load_vocabulary(tense):
 
         #Get kanji and furigana element, kanji element may be empty
         ent_seq_set_x = entry_x.findall('ent_seq')
+        dict_seq_set_x = entry_x.findall('dict_seq')
         kanji_set = entry_x.findall('kanji') # Kanji Element
         furigana_set = entry_x.findall('furigana') # Reading Element ( furigana )
         pos_set = entry_x.findall('pos') # Find all pos
+        def_set = entry_x.findall('definition') # Find all definitions
+        misc_set = entry_x.findall('misc') # Find all misc
+        s_inf_set = entry_x.findall('s_inf') # Find all s_inf
         kanji_score = 0
         furigana_score = 0
         is_verb = 0
@@ -428,7 +448,30 @@ def load_vocabulary(tense):
                 #print(verb_list)
             else: 
                 verb_list = ["REGULAR", number, ent_seq_set_x[0].text, kanji_set[0].text, furigana_set[0].text, pos_list]
-                verb_type.get_conjugation(kanji_set[0].text)
+                verb_tense_table = verb_type.get_conjugation(kanji_set[0].text)
+                verb_xml_h.write("<verb_entry>\n")
+                verb_xml_h.write("<ent_seq>%s</ent_seq>\n" % ent_seq_set_x[0].text)
+                verb_xml_h.write("<dict_seq>%s</dict_seq>\n" % dict_seq_set_x[0].text)
+                verb_xml_h.write("<kanji>%s</kanji>\n" % kanji_set[0].text)
+                verb_xml_h.write("<furigana>%s</furigana>\n" % furigana_set[0].text)
+                for pos_x in pos_set:
+                    verb_xml_h.write("<pos>%s</pos>\n" % pos_x.text)
+                for def_x in def_set:
+                    verb_xml_h.write("<definition>%s</definition>\n" % def_x.text)
+                for misc_x in misc_set:
+                    verb_xml_h.write("<misc>%s</misc>\n" % misc_x.text)
+                for s_inf_x in s_inf_set:
+                    verb_xml_h.write("<s_inf>%s</s_inf>\n" % s_inf_x.text)
+
+                verb_xml_h.write("<polite_form>%s</polite_form>\n" % verb_tense_table[1]) 
+                verb_xml_h.write("<negative_form>%s</negative_form>\n" % verb_tense_table[2])
+                verb_xml_h.write("<te_form>%s</te_form>\n" % verb_tense_table[3])
+                verb_xml_h.write("<ta_form>%s</ta_form>\n" % verb_tense_table[4])
+                verb_xml_h.write("<potential_form>%s</potential_form>\n" % verb_tense_table[5])
+                verb_xml_h.write("<conditional_form>%s</conditional_form>\n" % verb_tense_table[6])
+                verb_xml_h.write("<volitional_form>%s</volitional_form>\n" % verb_tense_table[7])
+                verb_xml_h.write("</verb_entry>\n\n")
+
 
 
     return verb_array
