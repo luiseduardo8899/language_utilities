@@ -25,7 +25,23 @@ WARNING: rate should be 2, otherwise we may violate wikipedia terms of use for d
 class BlogSpider(scrapy.Spider):
     rate = 2 #DO NOT CHANGE
 
+----------------------------------------------------------------------------------------------------------
 # Verb Conjugation # Script: verb_conjugate.py
-Takes an XML Vocab list, locates Verbs, and outputs the full conjugation table for regular verbs 
+
+Description: Takes an XML Vocab list, locates Verbs, and outputs the full conjugation table for regular verbs 
 
 #> python3 verb_conjugate.py
+
+
+
+----------------------------------------------------------------------------------------------------------
+#Update Vocabulary # Script: update_vocabulary.py
+
+Description: Takes a base GK vocabulary file format, checks against the JDICT ( dictionary ) and updates the entry with JDICT definitions ( up to 4)  POS, Verb types, notes, and tags.
+
+PARAMETERS: 
+INPUT_FILENAME = "./GKvocab_n3.xml"      #filename to modify
+DICT_FILENAME = "/tools/dict/JMdict_e"   #location of the JDICT dictionary
+OUTPUT_FILENAME = "GK3_updated.xml"	 #Updated filename
+
+#> python3 update_vocabulary.py
