@@ -390,8 +390,8 @@ class VerbType:
 def load_vocabulary(tense):
 
     filename = "conjugation_table.txt"
-    vocab_filename = "./GKvocab_n2.xml"
-    verb_filename = "./GKverbs_n2.xml"
+    vocab_filename = "./GKfiles/GKvocab_n2.xml"
+    verb_filename = "./GKfiles/GKverbs_n2.xml"
     verb_array = []
     number = 0
     counter = 0

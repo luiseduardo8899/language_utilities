@@ -1,0 +1,11 @@
+
+
+TODO : 
+. Fix empty <sense></sense> tags in updated file
+
+
+DONE:
+. Make <sense></sense> tags in GK vocab as well
+. Search dictionary with furignaa only as well ->Add kanji but tag as SRC_KANA_ALONE as at that level the kanji entry may be too advanced
+ 
+

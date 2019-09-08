@@ -41,24 +41,6 @@
 <ent_seq></ent_seq>
 <jlpt>N4</jlpt>
 <level></level>
-<kanji></kanji>
-<furigana>あ</furigana>
-<tanos_def>Ah</tanos_def>
-</vocab_entry>
-
-<vocab_entry>
-<ent_seq></ent_seq>
-<jlpt>N4</jlpt>
-<level></level>
-<kanji></kanji>	
-<furigana>ああ</furigana>	
-<tanos_def>like that</tanos_def>
-</vocab_entry>
-
-<vocab_entry>
-<ent_seq></ent_seq>
-<jlpt>N4</jlpt>
-<level></level>
 <kanji>間</kanji>	
 <furigana>あいだ</furigana>	
 <tanos_def>a space</tanos_def>
@@ -986,7 +968,9 @@
 <ent_seq></ent_seq>
 <jlpt>N4</jlpt>
 <level></level>
-<kanji>堅/硬/固い</kanji>	
+<kanji>堅</kanji>	
+<kanji>硬</kanji>	
+<kanji>固い</kanji>	
 <furigana>かたい</furigana>	
 <tanos_def>hard</tanos_def>
 </vocab_entry>
@@ -1058,9 +1042,18 @@
 <ent_seq></ent_seq>
 <jlpt>N4</jlpt>
 <level></level>
-<kanji>お・金持ち</kanji>	
-<furigana>かねもち/おかねもち</furigana>	
-<tanos_def>rich man</tanos_def>
+<kanji>お金持ち</kanji>	
+<furigana>おかねもち</furigana>	
+<tanos_def>rich person</tanos_def>
+</vocab_entry>
+
+<vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
+<kanji>金持ち</kanji>	
+<furigana>かねもち</furigana>	
+<tanos_def>rich person</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
@@ -1563,7 +1556,16 @@
 <jlpt>N4</jlpt>
 <level></level>
 <kanji></kanji>	
-<furigana>けれど/けれども</furigana>	
+<furigana>けれど</furigana>	
+<tanos_def>however</tanos_def>
+</vocab_entry>
+
+<vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
+<kanji></kanji>	
+<furigana>けれども</furigana>	
 <tanos_def>however</tanos_def>
 </vocab_entry>
 
@@ -1581,7 +1583,7 @@
 <jlpt>N4</jlpt>
 <level></level>
 <kanji></kanji>	
-<furigana>けんか・する</furigana>	
+<furigana>けんか</furigana>	
 <tanos_def>to quarrel</tanos_def>
 </vocab_entry>
 
@@ -2976,7 +2978,7 @@
 <jlpt>N4</jlpt>
 <level></level>
 <kanji></kanji>	
-<furigana>チェック・する</furigana>	
+<furigana>チェック</furigana>	
 <tanos_def>to check</tanos_def>
 </vocab_entry>
 
@@ -3692,204 +3694,306 @@
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>場合</kanji>	
 <furigana>ばあい</furigana>	
 <tanos_def>situation</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>倍</kanji>	
 <furigana>ばい</furigana>	
 <tanos_def>double</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>拝見</kanji>	
 <furigana>はいけん・する</furigana>	
 <tanos_def>(humble) to look at</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>歯医者</kanji>	
 <furigana>はいしゃ</furigana>	
 <tanos_def>dentist</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>運ぶ</kanji>	
 <furigana>はこぶ</furigana>	
 <tanos_def>to transport</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>始める</kanji>	
 <furigana>はじめる</furigana>	
 <tanos_def>to begin</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>場所</kanji>	
 <furigana>ばしょ</furigana>	
 <tanos_def>location</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji></kanji>	
 <furigana>はず</furigana>	
 <tanos_def>it should be so</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>恥ずかしい</kanji>	
 <furigana>はずかしい</furigana>	
 <tanos_def>embarrassed</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>発音</kanji>	
 <furigana>はつおん</furigana>	
 <tanos_def>pronunciation</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji></kanji>	
 <furigana>はっきり</furigana>	
 <tanos_def>clearly</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>花見</kanji>	
 <furigana>はなみ</furigana>	
 <tanos_def>cherry-blossom viewing</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>林</kanji>	
 <furigana>はやし</furigana>	
 <tanos_def>woods,forester</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>払う</kanji>	
 <furigana>はらう</furigana>	
 <tanos_def>to pay</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>番組</kanji>	
 <furigana>ばんぐみ</furigana>	
 <tanos_def>television or radio program</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>反対</kanji>	
 <furigana>はんたい</furigana>	
 <tanos_def>opposition</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>日</kanji>	
 <furigana>ひ</furigana>	
 <tanos_def>day, sun</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>火</kanji>	
 <furigana>ひ</furigana>	
 <tanos_def>fire</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>冷える</kanji>	
 <furigana>ひえる</furigana>	
 <tanos_def>to grow cold</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>光</kanji>	
 <furigana>ひかり</furigana>	
 <tanos_def>light</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>光る</kanji>	
 <furigana>ひかる</furigana>	
 <tanos_def>to shine,to glitter</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>引き出し</kanji>	
 <furigana>ひきだし</furigana>	
 <tanos_def>drawer,drawing out</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji></kanji>	
 <furigana>ひきだす</furigana>	
 <tanos_def>to withdraw</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji></kanji>	
 <furigana>ひげ</furigana>	
 <tanos_def>beard</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>飛行場</kanji>	
 <furigana>ひこうじょう</furigana>	
 <tanos_def>airport</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>久しぶり</kanji>	
 <furigana>ひさしぶり</furigana>	
 <tanos_def>after a long time</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>美術館</kanji>	
 <furigana>びじゅつかん</furigana>	
 <tanos_def>art gallery</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>非常に</kanji>	
 <furigana>ひじょうに</furigana>	
 <tanos_def>extremely</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>引っ越す</kanji>	
 <furigana>ひっこす</furigana>	
 <tanos_def>to move house</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>必要</kanji>	
 <furigana>ひつよう</furigana>	
 <tanos_def>necessary</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji></kanji>	
 <furigana>ひどい</furigana>	
 <tanos_def>awful</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>開く</kanji>	
 <furigana>ひらく</furigana>	
 <tanos_def>to open an event</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>昼間</kanji>	
 <furigana>ひるま</furigana>	
 <tanos_def>daytime,during the day</tanos_def>
 </vocab_entry>
 
 <vocab_entry>
+<ent_seq></ent_seq>
+<jlpt>N4</jlpt>
+<level></level>
 <kanji>昼休み</kanji>	
 <furigana>ひるやすみ</furigana>	
 <tanos_def>noon break</tanos_def>
@@ -5052,15 +5156,6 @@
 <jlpt>N4</jlpt>
 <level></level>
 <kanji></kanji>	
-<furigana>チェック・する</furigana>	
-<tanos_def>to check</tanos_def>
-</vocab_entry>
-
-<vocab_entry>
-<ent_seq></ent_seq>
-<jlpt>N4</jlpt>
-<level></level>
-<kanji></kanji>	
 <furigana>テキスト</furigana>	
 <tanos_def>text,text book</tanos_def>
 </vocab_entry>
@@ -5160,7 +5255,8 @@
 <jlpt>N4</jlpt>
 <level></level>
 <kanji></kanji>	
-<furigana>レポート/リポート</furigana>	
+<furigana>レポート</furigana>
+<furigana>リポート</furigana>	
 <tanos_def>report</tanos_def>
 </vocab_entry>
 

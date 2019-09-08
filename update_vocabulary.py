@@ -2,9 +2,9 @@ import re
 import xml.etree.ElementTree as metree
 import random
 
-INPUT_FILENAME = "./GKvocab_n3.xml"
+INPUT_FILENAME = "./GKfiles/GKvocab_n4_raw.xml"
 DICT_FILENAME = "/tools/dict/JMdict_e"
-OUTPUT_FILENAME = "GK3_updated.xml"
+OUTPUT_FILENAME = "./GKvocab_n4_updated.xml"
 
 pos_switch = {
 "Godan verb with `bu' ending": {"VERB_5_BU"},
@@ -17,6 +17,8 @@ pos_switch = {
 "Godan verb with `tsu' ending": {"VERB_5_TSU"} ,
 "Godan verb with `u' ending":  {"VERB5_U"},
 "Godan verb with `u' ending (special class)": {"VERB_5_U", "VERB_SPECIAL"} ,
+"Godan verb - -aru special class": {"VERB_5_ARU", "VERB_SPECIAL"} ,
+"Ichidan verb - kureru special class": {"VERB_1_KURERU", "VERB_SPECIAL"} ,
 "Ichidan verb": {"VERB_1"} ,
 "Ichidan verb - zuru verb (alternative form of -jiru verbs)": {"VERB_1_ZURU"} ,
 "Nidan verb (lower class) with `ru' ending (archaic)": {"VERB_2_RU"} ,
@@ -32,12 +34,14 @@ pos_switch = {
 "auxiliary verb": {"VERB_AUXILIARY"} ,
 "conjunction": {"CONJUNCTION"},
 "counter":  {"COUNTER"},
+"numeric":  {"NUMERIC"},
+"particle":  {"PARTICLE"},
 "expressions (phrases, clauses, etc.)": {"EXPRESSION"},
 "interjection (kandoushi)":  {"INTERJECTION"},
 "intransitive verb":  {"VERB_INTRANSITIVE"},
 "irregular ru verb, plain form ends with -ri": {"VERB_RU", "VERB_IRREGULAR"},
 "noun (common) (futsuumeishi)":  {"NOUN"},
-"noun (temporal) (jisoumeishi)": {"NOUN", "TEMPORAl"},
+"noun (temporal) (jisoumeishi)": {"NOUN", "TEMPORAL"},
 "noun or participle which takes the aux. verb suru":  {"NOUN", "TAKES_SURU"},
 "noun or verb acting prenominally":  {"NOUN_VERB_ACTING_PRENOMINALLY"},
 "noun, used as a prefix":  {"NOUN", "USED_AS_PREFIX"},
@@ -56,6 +60,7 @@ misc_switch = {
 "colloquialism": {"COLLOQUIALISM"},
 "familiar language": {"FAMILIAR_LANGUAGE"},
 "female term or language": {"FEMALE_TERM"},
+"children's language": {"CHILDREN_LANGUAGE"},
 "honorific or respectful (sonkeigo) language": {"HONORIFIC_TERM"},
 "humble (kenjougo) language": {"HUMBLE_TERM"},
 "male term or language": {"MALE_TERM"},
@@ -111,7 +116,17 @@ def load_vocabulary():
         xml_file_h.write("<vocab_entry>\n")
         #Get kanji and furigana element, kanji element may be empty
         ent_seq_set_x = entry_x.findall('ent_seq')
-        xml_file_h.write("<ent_seq>%s</ent_seq>\n" % ent_seq_set_x[0].text)
+
+        #CONTINUAR AQUI --> 
+
+        if len(ent_seq_set_x) == 0 : 
+            ent_seq_s = 1090520190000 + number
+            xml_file_h.write("<ent_seq>%s</ent_seq>\n" % ent_seq_s)
+        elif ent_seq_set_x[0].text == None or ent_seq_set_x[0].text == "": 
+            ent_seq_s = 1090520190000 + number
+            xml_file_h.write("<ent_seq>%s</ent_seq>\n" % ent_seq_s)
+        else:
+            xml_file_h.write("<ent_seq>%s</ent_seq>\n" % ent_seq_set_x[0].text)
         dbsource_set_x = entry_x.findall('source')
         for dbsource_x in dbsource_set_x:
             xml_file_h.write("<dbsource>%s</dbsource>\n" % dbsource_x.text)
@@ -126,8 +141,9 @@ def load_vocabulary():
 
         kanji_set = entry_x.findall('kanji') # Kanji Element
         if len(kanji_set) > 0:
+            #If source file has no Kanji, match Reb, and try to fill kanji from dictionary
             if kanji_set[0].text == None or  kanji_set[0].text == "" :
-                xml_file_h.write("<kanji></kanji>\n")
+                #xml_file_h.write("<kanji></kanji>\n")
                 match_reb = 1
             else:
                 xml_file_h.write("<kanji>%s</kanji>\n" % kanji_set[0].text)
@@ -138,8 +154,10 @@ def load_vocabulary():
             if furigana_set[0].text == None or furigana_set[0].text == "" :
                 xml_file_h.write("<furigana></furigana>\n")
             else:
-                print("FURIGANA: %s \n" % furigana_set[0].text)
-                xml_file_h.write("<furigana>%s</furigana>\n" % furigana_set[0].text)
+                for furigana_x in furigana_set:
+                    print("FURIGANA: %s \n" % furigana_x.text)
+                    xml_file_h.write("<furigana>%s</furigana>\n" % furigana_x.text)
+
         definition_set = entry_x.findall('definition') # Reading Element ( furigana )
         for definition_x in definition_set:
             xml_file_h.write("<definition>%s</definition>\n" % definition_x.text)
@@ -188,65 +206,85 @@ def load_vocabulary():
             r_ele_set = match_entry.findall('r_ele') # Kanji Element
             #Check if match N2 Vocab entry
             xml_file_h.write("<dict_seq>%s</dict_seq>\n" % dict_seq_set_x[0].text)
+
+            #add kanji if it exists into GK file, but note we should mainly present this as furigana only
+            if match_reb == 1 : 
+                if len(k_ele_set) > 0:
+                    for k_ele_x in k_ele_set:
+                        keb_set = k_ele_x.findall('keb')
+                        for keb_x in keb_set :
+                            xml_file_h.write("<kanji>%s</kanji>\n" % keb_x.text ) 
+                            misc_s = "SRC_KANA_ALONE" #When the dictionary entry actually has a kanji character
+                            xml_file_h.write("<misc>%s</misc>\n" % misc_s ) 
+                            break # break after first kanji reading?
+                        break # break after first kanji reading?
+
             for sense_x in sense_set:
-                gloss_set = sense_x.findall('gloss')
-                pos_set = sense_x.findall('pos')
-                s_inf_set = sense_x.findall('s_inf')
-                misc_set = sense_x.findall('misc')
-                field_set = sense_x.findall('field')
+                if gloss_counter < 5:
+                    gloss_set = sense_x.findall('gloss')
+                    pos_set = sense_x.findall('pos')
+                    s_inf_set = sense_x.findall('s_inf')
+                    misc_set = sense_x.findall('misc')
+                    field_set = sense_x.findall('field')
+                    if len(gloss_set) > 0 or len(pos_set) > 0 or len(s_inf_set) > 0 or len(misc_set) > 0 or len(field_set) > 0 :
+                        xml_file_h.write("<sense>\n")
 
-                #if so dump POS tags
-                for gloss_x in gloss_set:
-                    if gloss_x.text in gloss_array:
-                        print("REPEAT GLOSS: %s \n" % gloss_x.text )
-                    else:
-                        gloss_counter +=1
-                        if gloss_counter < 5:
-                            gloss_array.append(gloss_x.text)
-                            xml_file_h.write("<definition>%s</definition>\n" % gloss_x.text)
-                            print("Definition: %s \n" % gloss_x.text )
-
-                #if so dump POS tags
-                for pos_x in pos_set:
-                    s =  pos_switch.get(pos_x.text, {"INVALID_POS: %s" % pos_x.text})
-                    for i in s :
-                        if i in pos_array:
-                            print("REPEAT POS: %s \n" % i)
+                    #if so dump POS tags
+                    for gloss_x in gloss_set:
+                        if gloss_x.text in gloss_array:
+                            print("REPEAT GLOSS: %s \n" % gloss_x.text )
+                            xml_file_h.write("<definition>REPEAT %s</definition>\n" % gloss_x.text)
                         else:
-                            pos_array.append(i)
-                            xml_file_h.write("<pos>%s</pos>\n" % i)
-                            print("POS: %s \n" % i)
-                    
-                #if so dump SINF tags
-                for s_inf_x in s_inf_set:
-                    if s_inf_x.text in sinf_array:
-                        print("REPEAT SINF: %s \n" % s_inf_x.text )
-                    else:
-                        sinf_array.append(s_inf_x.text)
-                        xml_file_h.write("<s_inf>%s</s_inf>\n" % s_inf_x.text)
-                        print("SINF: %s \n" % s_inf_x.text )
+                            gloss_counter +=1
+                            if gloss_counter < 5:
+                                gloss_array.append(gloss_x.text)
+                                xml_file_h.write("<definition>%s</definition>\n" % gloss_x.text)
+                                print("Definition: %s \n" % gloss_x.text )
 
-                #if so dump SINF tags
-                for misc_x in misc_set:
-                    s =  misc_switch.get(misc_x.text, {"INVALID_MISC: %s" % misc_x.text})
-                    for i in s :
-                        if i in misc_array:
-                            print("REPEAT MISC: %s \n" % i)
+                    #if so dump POS tags
+                    for pos_x in pos_set:
+                        s =  pos_switch.get(pos_x.text, {"INVALID_POS: %s" % pos_x.text})
+                        for i in s :
+                            if i in pos_array:
+                                print("REPEAT POS: %s \n" % i)
+                            else:
+                                pos_array.append(i)
+                                xml_file_h.write("<pos>%s</pos>\n" % i)
+                                print("POS: %s \n" % i)
+                        
+                    #if so dump SINF tags
+                    for s_inf_x in s_inf_set:
+                        if s_inf_x.text in sinf_array:
+                            print("REPEAT SINF: %s \n" % s_inf_x.text )
                         else:
-                            misc_array.append(i)
-                            xml_file_h.write("<misc>%s</misc>\n" % i )
-                            print("MISC: %s \n" % i)
+                            sinf_array.append(s_inf_x.text)
+                            xml_file_h.write("<s_inf>%s</s_inf>\n" % s_inf_x.text)
+                            print("SINF: %s \n" % s_inf_x.text )
 
-                #if so dump SINF tags
-                for field_x in field_set:
-                    if field_x.text in field_array:
-                        print("REPEAT MISC: %s \n" % field_x.text )
-                    else:
-                        field_array.append(field_x.text)
-                        xml_file_h.write("<field>%s</field>\n" % field_x.text )
-                        print("FIELD: %s \n" % field_x.text )
+                    #if so dump SINF tags
+                    for misc_x in misc_set:
+                        s =  misc_switch.get(misc_x.text, {"INVALID_MISC: %s" % misc_x.text})
+                        for i in s :
+                            if i in misc_array:
+                                print("REPEAT MISC: %s \n" % i)
+                            else:
+                                misc_array.append(i)
+                                xml_file_h.write("<misc>%s</misc>\n" % i )
+                                print("MISC: %s \n" % i)
 
-                #TODO;: check the definition entries if they match or if new ones are found
+                    #if so dump SINF tags
+                    for field_x in field_set:
+                        if field_x.text in field_array:
+                            print("REPEAT MISC: %s \n" % field_x.text )
+                        else:
+                            field_array.append(field_x.text)
+                            xml_file_h.write("<field>%s</field>\n" % field_x.text )
+                            print("FIELD: %s \n" % field_x.text )
+
+                    if len(gloss_set) > 0 or len(pos_set) > 0 or len(s_inf_set) > 0 or len(misc_set) > 0 or len(field_set) > 0 :
+                        xml_file_h.write("</sense>\n")
+
+                    #TODO;: check the definition entries if they match or if new ones are found
 
         if no_match == 1:
              xml_file_h.write("<nomatch>NO MATCH IN DICTIONARY<no_match>\n")
