@@ -35,6 +35,9 @@ class BlogSpider(scrapy.Spider):
     def load_vocabulary(txt):
         vocab_filename = "./GKvocab_n2.xml"
         vocab_array = []
+
+        vocab_relation_table = []
+
         number = 0
         counter = 0
         level_counter = 1
