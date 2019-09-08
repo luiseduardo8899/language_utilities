@@ -51,20 +51,40 @@ TA_FORM = 4
 POTENTIAL_FORM = 5
 CONDITIONAL_FORM = 6
 VOLITIONAL_FORM = 7
+#liu mod start
+POLITE_TA_FORM = 8
+POLITE_NEG_TA_FORM = 9
+#liu mod end
 conjugation_table = [[],[],[],[],[],[],[],[],[],[], [], [], []]
-conjugation_table[VERB_5_U] = 	["う", "います", "わない", "って", "った", "える", "えば", "おう"]
-conjugation_table[VERB_5_TSU] = ["つ", "ちます", "たない", "って", "った", "てる", "てば", "とう"]
-conjugation_table[VERB_5_RU] = 	["る", "ります", "らない", "って", "った", "れる", "れば", "ろう"]
-conjugation_table[VERB_5_KU] = 	["く", "きます", "かない", "いて", "いた", "ける", "けば", "こう"]
-conjugation_table[VERB_5_GU] = 	["ぐ", "ぎます", "がない", "いで", "いだ", "げる", "げば", "ごう"]
-conjugation_table[VERB_5_NU] = 	["ぬ", "にます", "なない", "んで", "んだ", "ねる", "ねば", "のう"]
-conjugation_table[VERB_5_BU] = 	["ぶ", "びます", "ばない", "んで", "んだ", "べる", "べば", "ぼう"] 
-conjugation_table[VERB_5_MU] = 	["む", "みます", "まない", "んで", "んだ", "める", "めば", "もう"]
-conjugation_table[VERB_5_SU] = 	["す" , "します", "さない", "して", "した", "せる", "せば", "そう"]
-conjugation_table[VERB_5_I_ERU] = 	["る", "ます", "ない", "て", "た", "られる", "れば", "よう"]
-conjugation_table[VERB_SURU] = 	["する", "します", "しない", "して", "した", "できる", "すれば", "しよう"]
-conjugation_table[VERB_1] = 	["る", "ます", "ない", "て", "た", "られる", "れば", "よう"]
-conjugation_table[VERB_1_ZURU] =["ずる", "じます", "じない", "じて", "じた", "じられる", "ずれば", "じよう"]
+#liu mod start
+#conjugation_table[VERB_5_U] = 	["う", "います", "わない", "って", "った", "える", "えば", "おう"]
+#conjugation_table[VERB_5_TSU] = ["つ", "ちます", "たない", "って", "った", "てる", "てば", "とう"]
+#conjugation_table[VERB_5_RU] = 	["る", "ります", "らない", "って", "った", "れる", "れば", "ろう"]
+#conjugation_table[VERB_5_KU] = 	["く", "きます", "かない", "いて", "いた", "ける", "けば", "こう"]
+#conjugation_table[VERB_5_GU] = 	["ぐ", "ぎます", "がない", "いで", "いだ", "げる", "げば", "ごう"]
+#conjugation_table[VERB_5_NU] = 	["ぬ", "にます", "なない", "んで", "んだ", "ねる", "ねば", "のう"]
+#conjugation_table[VERB_5_BU] = 	["ぶ", "びます", "ばない", "んで", "んだ", "べる", "べば", "ぼう"] 
+#conjugation_table[VERB_5_MU] = 	["む", "みます", "まない", "んで", "んだ", "める", "めば", "もう"]
+#conjugation_table[VERB_5_SU] = 	["す" , "します", "さない", "して", "した", "せる", "せば", "そう"]
+#conjugation_table[VERB_5_I_ERU] = 	["る", "ます", "ない", "て", "た", "られる", "れば", "よう"]
+#conjugation_table[VERB_SURU] = 	["する", "します", "しない", "して", "した", "できる", "すれば", "しよう"]
+#conjugation_table[VERB_1] = 	["る", "ます", "ない", "て", "た", "られる", "れば", "よう"]
+#conjugation_table[VERB_1_ZURU] =["ずる", "じます", "じない", "じて", "じた", "じられる", "ずれば", "じよう"]
+
+conjugation_table[VERB_5_U] = 	["う", "います", "わない", "って", "った", "える", "えば", "おう", "いました", "いませんでした"]
+conjugation_table[VERB_5_TSU] = ["つ", "ちます", "たない", "って", "った", "てる", "てば", "とう", "ちました", "ちませんでした"]
+conjugation_table[VERB_5_RU] = 	["る", "ります", "らない", "って", "った", "れる", "れば", "ろう", "りました", "りませんでした"]
+conjugation_table[VERB_5_KU] = 	["く", "きます", "かない", "いて", "いた", "ける", "けば", "こう", "きました", "きませんでした"]
+conjugation_table[VERB_5_GU] = 	["ぐ", "ぎます", "がない", "いで", "いだ", "げる", "げば", "ごう", "ぎました", "ぎませんでした"]
+conjugation_table[VERB_5_NU] = 	["ぬ", "にます", "なない", "んで", "んだ", "ねる", "ねば", "のう", "にました", "にませんでした"]
+conjugation_table[VERB_5_BU] = 	["ぶ", "びます", "ばない", "んで", "んだ", "べる", "べば", "ぼう", "びました", "びませんでした"] 
+conjugation_table[VERB_5_MU] = 	["む", "みます", "まない", "んで", "んだ", "める", "めば", "もう", "みました", "みませんでした"]
+conjugation_table[VERB_5_SU] = 	["す", "します", "さない", "して", "した", "せる", "せば", "そう", "しました", "しませんでした"]
+conjugation_table[VERB_5_I_ERU] = 	["る", "ます", "ない", "て", "た", "られる", "れば", "よう", "ました", "ませんでした"]
+conjugation_table[VERB_SURU] = 	["する", "します", "しない", "して", "した", "できる", "すれば", "しよう", "しました", "しませんでした"]
+conjugation_table[VERB_1] = 	["る", "ます", "ない", "て", "た", "られる", "れば", "よう", "ました", "ませんでした"]
+conjugation_table[VERB_1_ZURU] =["ずる", "じます", "じない", "じて", "じた", "じられる", "ずれば", "じよう", "じました", "じませんでした"]
+#liu mod end
 
 
 #detect type of verb
@@ -331,6 +351,10 @@ class VerbType:
         potential_form = ""
         conditional_form = ""
         volitional_form = ""
+        #liu odd start
+        polite_ta_form = ""
+        polite_neg_ta_form = ""
+        #liu odd end
         VERB_TYPE = VERB_UNKNOWN
         table = [dict_form]
         if self.verb_suru_v  :
@@ -366,6 +390,10 @@ class VerbType:
             potential_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][POTENTIAL_FORM])
             conditional_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][CONDITIONAL_FORM])
             volitional_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][VOLITIONAL_FORM])
+            #liu mod start
+            polite_ta_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][POLITE_TA_FORM])
+            polite_neg_ta_form = dict_form.replace(conjugation_table[VERB_TYPE][DICTIONARY_FORM], conjugation_table[VERB_TYPE][POLITE_NEG_TA_FORM])
+            #liu mod end
 
             table.append(polite_form)
             table.append(negative_form)
@@ -374,6 +402,10 @@ class VerbType:
             table.append(potential_form)
             table.append(conditional_form)
             table.append(volitional_form)
+            #liu mod start
+            table.append(polite_ta_form)
+            table.append(polite_neg_ta_form)
+            #liu mod end
 
 
         print("Dictionary Form : %s" % dict_form)
@@ -384,6 +416,10 @@ class VerbType:
         print(" - Potential Form %s" % potential_form)
         print(" - Conditional Form %s" % conditional_form)
         print(" - Volitional Form %s" % volitional_form)
+        #liu mod start
+        print(" - Polite Ta Form %s" % polite_ta_form)
+        print(" - Polite Neg Ta Form  %s" % polite_neg_ta_form)
+        #liu mod end
 
         return table
 
@@ -470,6 +506,10 @@ def load_vocabulary(tense):
                 verb_xml_h.write("<potential_form>%s</potential_form>\n" % verb_tense_table[5])
                 verb_xml_h.write("<conditional_form>%s</conditional_form>\n" % verb_tense_table[6])
                 verb_xml_h.write("<volitional_form>%s</volitional_form>\n" % verb_tense_table[7])
+                #liu mod start
+                verb_xml_h.write("<polite_ta_form>%s</polite_ta_form>\n" % verb_tense_table[8])
+                verb_xml_h.write("<polite_neg_ta_form>%s</polite_neg_ta_form>\n" % verb_tense_table[9])
+                #liu mod end
                 verb_xml_h.write("</verb_entry>\n\n")
 
 
