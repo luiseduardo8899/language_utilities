@@ -479,9 +479,47 @@ def load_vocabulary(tense):
 
         #If it has a verb tag
         if is_verb == 1 :
-            if verb_type.verb_special_v or verb_type.verb_irregular_v or verb_type.special_v:
+#liu mod start
+            #if verb_type.verb_special_v or verb_type.verb_irregular_v or verb_type.special_v:
+            #    verb_list = ["SPECIAL", number, ent_seq_set_x[0].text, kanji_set[0].text, furigana_set[0].text, pos_list]
+            #    #print(verb_list)
+
+            if verb_type.verb_special_v:
                 verb_list = ["SPECIAL", number, ent_seq_set_x[0].text, kanji_set[0].text, furigana_set[0].text, pos_list]
-                #print(verb_list)
+                print("SPECIAL: verb_special_v",verb_list)
+            elif verb_type.verb_irregular_v:
+                verb_list = ["SPECIAL", number, ent_seq_set_x[0].text, kanji_set[0].text, furigana_set[0].text, pos_list]
+                print("SPECIAL: verb_irregular_v",verb_list)
+            elif verb_type.special_v:
+                verb_list = ["SPECIAL", number, ent_seq_set_x[0].text, kanji_set[0].text, furigana_set[0].text, pos_list]
+                verb_tense_table = verb_type.get_conjugation(kanji_set[0].text)
+                verb_xml_h.write("<verb_entry>\n")
+                verb_xml_h.write("<ent_seq>%s</ent_seq>\n" % ent_seq_set_x[0].text)
+                verb_xml_h.write("<dict_seq>%s</dict_seq>\n" % dict_seq_set_x[0].text)
+                verb_xml_h.write("<kanji>%s</kanji>\n" % kanji_set[0].text)
+                verb_xml_h.write("<furigana>%s</furigana>\n" % furigana_set[0].text)
+                for pos_x in pos_set:
+                    verb_xml_h.write("<pos>%s</pos>\n" % pos_x.text)
+                for def_x in def_set:
+                    verb_xml_h.write("<definition>%s</definition>\n" % def_x.text)
+                for misc_x in misc_set:
+                    verb_xml_h.write("<misc>%s</misc>\n" % misc_x.text)
+                for s_inf_x in s_inf_set:
+                    verb_xml_h.write("<s_inf>%s</s_inf>\n" % s_inf_x.text)
+
+                verb_xml_h.write("<polite_form>%s</polite_form>\n" % verb_tense_table[1]) 
+                verb_xml_h.write("<negative_form>%s</negative_form>\n" % verb_tense_table[2])
+                verb_xml_h.write("<te_form>%s</te_form>\n" % verb_tense_table[3])
+                verb_xml_h.write("<ta_form>%s</ta_form>\n" % verb_tense_table[4])
+                verb_xml_h.write("<potential_form>%s</potential_form>\n" % verb_tense_table[5])
+                verb_xml_h.write("<conditional_form>%s</conditional_form>\n" % verb_tense_table[6])
+                verb_xml_h.write("<volitional_form>%s</volitional_form>\n" % verb_tense_table[7])
+                verb_xml_h.write("<polite_ta_form>%s</polite_ta_form>\n" % verb_tense_table[8])
+                verb_xml_h.write("<polite_neg_ta_form>%s</polite_neg_ta_form>\n" % verb_tense_table[9])
+                verb_xml_h.write("</verb_entry>\n\n")
+ 
+#liu mod end
+
             else: 
                 verb_list = ["REGULAR", number, ent_seq_set_x[0].text, kanji_set[0].text, furigana_set[0].text, pos_list]
                 verb_tense_table = verb_type.get_conjugation(kanji_set[0].text)
